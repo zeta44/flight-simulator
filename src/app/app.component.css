@@ -1,0 +1,31 @@
+.base {
+    background-color: #fafafa;
+}
+
+#principal {
+    height: 70vh;
+    background-color: #fafafa;
+    
+}
+
+#code {
+    width: 800px;
+}
+
+#textarea {
+	max-height: 60vh;
+}
+
+#botton {
+    text-align: center;
+    align-content: center;
+    height: 20vh;
+    align-items: center;
+    background-color: antiquewhite;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    box-shadow: 20px 2px 20px 0 rgba(50, 50, 50, 0.75);
+}
+
+
+
