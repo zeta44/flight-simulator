@@ -35,7 +35,7 @@
         <div id="principal" class="col-md-6" class="my-3">
           <div class="mb-3">
             <label for="textarea" class="form-label">Simulation Code</label>
-            <textarea class="form-control" id="textarea" rows="3" readonly></textarea>
+            <textarea class="form-control" id="textarea" rows="3" readonly>{{message}}</textarea>
           </div>
         </div>
 
@@ -54,16 +54,18 @@
       <article class="row">
 
         <div class="col-md-12 center">
-          <toggle-button (changed)="checked=$event"></toggle-button>
+          <button type="button" class="btn btn-success" (click)="start()">Start</button>
+          <button type="button" class="btn btn-danger" (click)="stop()">Stop</button>
+          <!-- <toggle-button (changed)="checked=$event"></toggle-button> -->
         </div>
 
       </article>
-      <article class="row">
+      <!-- <article class="row">
         <div class="col-md-12">
           <p>The simulation is {{checked ? 'Running' : 'OFF'}}.</p>
         </div>
 
-      </article>
+      </article> -->
     </section>
   </footer>
 </section>
