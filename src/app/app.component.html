@@ -9,7 +9,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -30,13 +30,34 @@
     </nav>
   </header>
   <main>
-    <section>
-      <article class="row">
-        <div id="principal" class="col-md-6" class="my-3">
+    <section id="principal" class="my-3">
+      <article class="row d-flex justify-content-between">
+        <div class="col-md-4 border m-2" >
+          <h1>Simulation Steps</h1>
+          <p>
+            {{message_status}}
+          </p>
+        </div>
+
+        <div class="col-md-4 border m-2" >
           <div class="mb-3">
-            <label for="textarea" class="form-label">Simulation Code</label>
-            <textarea class="form-control" id="textarea" rows="3" readonly>{{message}}</textarea>
+            <h1>Simulation Code</h1>
+            <p>
+              {{message_code}}
+            </p>
+           <!-- <label for="textarea" class="form-label">Simulation Code</label>
+            <textarea class="form-control" id="textarea" rows="3" readonly>
+              {{message_1}}
+              {{message}}
+            </textarea> -->
           </div>
+        </div>
+
+        <div class="col-md-3 border m-2">
+          <h1>Code Description</h1>
+            <p>
+              {{message_description}}
+            </p>
         </div>
 
       </article>
@@ -54,8 +75,8 @@
       <article class="row">
 
         <div class="col-md-12 center">
-          <button type="button" class="btn btn-success" (click)="start()">Start</button>
-          <button type="button" class="btn btn-danger" (click)="stop()">Stop</button>
+          <button type="button" class="btn btn-success" (click)="start()" [disabled]="desableStartButton">Start</button>
+          <button type="button" class="btn btn-danger" (click)="stop()" [disabled]="desableStopButton">Stop</button>
           <!-- <toggle-button (changed)="checked=$event"></toggle-button> -->
         </div>
 
