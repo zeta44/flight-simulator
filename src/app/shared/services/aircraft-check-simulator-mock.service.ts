@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, map, Observable, of, timeout } from 'rxjs';
-import { Codes } from '../shared';
+import { Codes } from '..';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class AircraftCheckSimulatorMockService {
    * blocks of sequential executions of functions or rxjs operators
    * @returns 
    */
-  public start(): Observable<string> {
+  public start(): Observable<any> {
     console.log('Start Executed')
     //of can be an instance of http.get
     return of('')
@@ -39,7 +39,7 @@ export class AircraftCheckSimulatorMockService {
       .pipe(map(val => {
         if (this.engineChecked && this.fuelChecked) {
           this.clear()
-          return 'All Checked'
+          return this.codes[0]
         }
         this.clear()
         return val;
@@ -56,7 +56,7 @@ export class AircraftCheckSimulatorMockService {
       this.engineChecked = true
       return 'Engine Checked'
     }
-    return 'Failed to check engine'
+    return this.codes[1]
   }
 
   // if the stopRequest happens before 6seconds
@@ -64,7 +64,7 @@ export class AircraftCheckSimulatorMockService {
   // however if the engine is checked and there is a stop request pending
   // the fuel check won't happen
   // otherwise it will succeed
-  private fuelCheck(val: string) {
+  private fuelCheck(val: any) {
     if (!this.engineChecked) {
       return val
     }
@@ -74,14 +74,14 @@ export class AircraftCheckSimulatorMockService {
       // if (valu == 1)
       //   this.fuelChecked = true
       // else
-      //   this.fuelChecked = false
-      let valu = this.randon();
-      this.fuelChecked = valu == 1
-      console.log(valu)
-      if (this.fuelChecked)
-        return 'Fuel Checked'
+        this.fuelChecked = true
+      // let valu = this.randon();
+      // this.fuelChecked = valu == 1
+      // console.log(valu)
+      // if (this.fuelChecked)
+      //   return 'Fuel Checked'
     }
-    return 'Failed to check fuel'
+    return this.codes[2] 
   }
 
   public stop(): Observable<string> {

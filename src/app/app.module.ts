@@ -7,7 +7,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToggleButtonComponent } from './toggle-button';
 import { FormsModule } from '@angular/forms';
-import { AircraftCheckSimulatorMockService } from './services';
+import { AircraftCheckSimulatorMockService } from './shared/services';
 
 @NgModule({
   declarations: [

@@ -32,20 +32,26 @@
   <main>
     <section id="principal" class="my-3">
       <article class="row d-flex justify-content-between">
-        <div class="col-md-4 border m-2" >
-          <h1>Simulation Steps</h1>
-          <p>
-            {{message_status}}
-          </p>
+        <div class="col-md-4 border m-2">
+          <h2>Simulation Steps</h2>
+          <div class="s-code">
+            <p>
+              {{message_status}}
+            </p>
+          </div>
+
         </div>
 
-        <div class="col-md-4 border m-2" >
+        <div class="col-md-3 border m-2">
           <div class="mb-3">
-            <h1>Simulation Code</h1>
-            <p>
-              {{message_code}}
-            </p>
-           <!-- <label for="textarea" class="form-label">Simulation Code</label>
+            <h2>Simulation Code</h2>
+            <div class="c-code">
+              <p>
+                {{message_code}}
+              </p>
+            </div>
+
+            <!-- <label for="textarea" class="form-label">Simulation Code</label>
             <textarea class="form-control" id="textarea" rows="3" readonly>
               {{message_1}}
               {{message}}
@@ -53,11 +59,15 @@
           </div>
         </div>
 
-        <div class="col-md-3 border m-2">
-          <h1>Code Description</h1>
-            <p>
+        <div class="col-md-4 border m-2">
+          <h2>Code Description</h2>
+          <h4>{{message_title}}</h4>
+          <div >
+            <div class="d-code">
               {{message_description}}
-            </p>
+            </div>
+          </div>
+
         </div>
 
       </article>
