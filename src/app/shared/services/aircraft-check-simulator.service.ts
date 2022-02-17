@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ExecutionCode } from '../execution-codes';
 import { AircraftCheckSimulatorMockService } from './aircraft-check-simulator-mock.service';
 
 
@@ -16,7 +17,7 @@ export class AircraftCheckSimulatorService {
 
   }
 
-  start(): Observable<string> {
+  start(): Observable<Array<ExecutionCode>> {
     return this.scriptService.start()
   }
 

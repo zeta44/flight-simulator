@@ -1,4 +1,5 @@
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
+import { ExecutionCodes } from '..';
 
 import { AircraftCheckSimulatorMockService } from './aircraft-check-simulator-mock.service';
 
@@ -18,34 +19,12 @@ describe('AircraftCheckSimulatorMockService', () => {
     service.start()
       //observables expects clients aka subscribers to catch the values 
       //of the execution
-      .subscribe((result: string | any[]) => {
-        console.log(result)
-        expect(result).toEqual('Failed to check engine')
+      .subscribe((result) => {
+        let expected = ExecutionCodes.S0002;
+        let actual = result[result.length - 1]
+        expect(expected).toEqual(actual)
       });
     //I am simulating a fast click on stop right after the start
     service.stop();
-  })));
-
-  //test if fuel as checked
-  it('fuel should fail due to stop request', waitForAsync(inject([AircraftCheckSimulatorMockService], (service: AircraftCheckSimulatorMockService) => {
-    service.start()
-      .subscribe((result: string | any[]) => {
-        console.log(result)
-        expect(result).toEqual('Failed to check fuel')
-      });
-    //I am using a timeout to simulate that the user clicked the stop button a few seconds after the engine
-    //check was performed
-    setTimeout(() => {
-      service.stop();
-    }, 4000)
-  })));
-
-  //tests if all simulation steps were accomplished
-  it('all checks must be done', waitForAsync(inject([AircraftCheckSimulatorMockService], (service: AircraftCheckSimulatorMockService) => {
-    service.start()
-      .subscribe((result: string | any[]) => {
-        console.log(result)
-        expect(result).toEqual('All Checked')
-      });
   })));
 });
