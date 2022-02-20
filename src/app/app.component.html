@@ -42,7 +42,7 @@
             <h2>Simulation Code</h2>
             <div class="c-code">
               <p>
-                {{finalExecutionCode.code}}
+                {{message_code}}
               </p>
             </div>
           </div>
@@ -50,10 +50,10 @@
 
         <div class="col-md-4 border m-2">
           <h2>Code Description</h2>
-          <h4>{{finalExecutionCode.title}}</h4>
+          <h4>{{message_title}}</h4>
           <div>
             <div class="d-code">
-              {{finalExecutionCode.description}}
+              {{message_description}}
             </div>
           </div>
 
@@ -74,8 +74,7 @@
       <article class="row">
 
         <div class="col-md-12 center">
-          <button type="button" class="btn btn-success my-3 mx-3" (click)="start()"
-            [disabled]="desableStartButton">Start</button>
+          <button type="button" class="btn btn-success my-3 mx-3" (click)="start()" [disabled]="desableStartButton">Start</button>
           <button type="button" class="btn btn-danger" (click)="stop()" [disabled]="desableStopButton">Stop</button>
           <!-- <toggle-button (changed)="checked=$event"></toggle-button> -->
         </div>

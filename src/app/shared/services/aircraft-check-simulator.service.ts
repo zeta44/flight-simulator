@@ -17,11 +17,11 @@ export class AircraftCheckSimulatorService {
 
   }
 
-  start(): Observable<Array<ExecutionCode>> {
+  start(): Promise<Array<ExecutionCode>> {
     return this.scriptService.start()
   }
 
-  stop(): Observable<string> {
+  stop(): Promise<string> {
     return this.scriptService.stop()
   }
 }

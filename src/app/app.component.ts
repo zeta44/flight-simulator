@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { delay, interval } from 'rxjs';
 import { AircraftCheckSimulatorService, ExecutionCode } from './shared';
 
 
@@ -18,10 +17,17 @@ export class AppComponent implements OnInit {
   message_code!: string
   message_description!: string;
 
-  finalExecutionCode!: ExecutionCode;
+
+
+  finalExecutionCode: ExecutionCode = {
+    code: '',
+    title: '',
+    description: '',
+    success: true
+  };
 
   /**
-   * Buttons propertys
+   * Buttons properties
    */
   desableStartButton!: boolean
   desableStopButton!: boolean
@@ -33,7 +39,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.desableStartButton = false;
     this.desableStopButton = true;
-    this.message_status = ''
+    this.message_status = '';
+    this.finalExecutionCode.code = '';
+    this.finalExecutionCode.description = '';
+    this.finalExecutionCode.success = true;
+    this.finalExecutionCode.title = '';
 
   }
 
@@ -43,39 +53,43 @@ export class AppComponent implements OnInit {
     this.desableStopButton = false;
     this.clear();
     this.message_status += 'Simulation Started... Checking the systems.';
-    this.serviceCheck.start().subscribe(val => {
-      this.finalExecutionCode = val[val.length - 1]
-      for (let i = 0; i < val.length; i++) {
-        this.message_status += `\nSimluation Step: Code=${val[i].code}|Description:${val[i].description}|Status:${val[i].success}`;
-      }
-      if (this.desableStopButton) {
-        this.message_status += `\nThe simulation stoped due to user request...`;
-      }
-      this.message_status += `\nEnd of Simunation`;
-      this.desableStartButton = false;
-      this.desableStopButton = true;
-    })
+    this.serviceCheck.start()
+      .then(val => {
+        this.finalExecutionCode = val[val.length - 1]
+        for (let i = 0; i < val.length; i++) {
+          this.message_status += `\n=> Simluation Step: Code=${val[i].code}|Description:${val[i].description}|Status:${val[i].success}`;
+        }
 
+        if (this.desableStopButton) {
+          this.message_status += `\nThe simulation stoped due to user request...`;
+        }
+        this.message_status += `\nEnd of Simunation`;
+
+        this.message_title = this.finalExecutionCode.title;
+        this.message_code = this.finalExecutionCode.code;
+        this.message_description = this.finalExecutionCode.description;
+        this.finish()
+      })
+
+    
   }
 
   stop() {
-    try {
-      // this.desableStartButton = true;
-      this.desableStopButton = true;
+    this.desableStopButton = true;
+    this.desableStartButton = true;
 
-      // this.message = '';
-      this.message_status += '\nThe user requested to stop the simulation, the sytem needs to wait until the current task finishes...';
-      this.serviceCheck.stop();
-
-      // this.desableStartButton = false;
-      // this.desableStopButton = true;
-    } catch (error) {
-      this.message_status = `${error}`
-    }
+    this.message_status += '\nThe user requested to stop the simulation, the sytem needs to wait until the current task finishes...';
+    this.serviceCheck.stop()
+    .then((result)=>{
+      this.message_status += result
+    });
   }
 
   clear() {
     this.message_status = '';
+    this.message_title = '';
+    this.message_code = '';
+    this.message_description = '';
   }
 
   finish() {

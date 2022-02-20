@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { concat, delay, from, map, Observable, of, timeout, Subject, BehaviorSubject, concatMap, ObservableInput } from 'rxjs';
 import { ExecutionCode, ExecutionCodes } from '..';
 
 @Injectable({
@@ -11,8 +10,9 @@ export class AircraftCheckSimulatorMockService {
   engineChecked = false
   fuelChecked = false
 
-  private executionCodes: ExecutionCode[] = [];
-  private obsCodes: BehaviorSubject<ExecutionCode[]> = new BehaviorSubject(this.executionCodes);
+  speedInSeconds = 3
+
+
 
   constructor() { }
 
@@ -23,19 +23,35 @@ export class AircraftCheckSimulatorMockService {
    * blocks of sequential executions of functions or rxjs operators
    * @returns 
    */
-  public start(forceFailEngine: boolean = false, forceFailFuel: boolean = false): Observable<Array<ExecutionCode>> {
+  public start(forceFailEngine: boolean = false, forceFailFuel: boolean = false): Promise<Array<ExecutionCode>> {
     console.log('Start Executed')
-    return this.obsCodes.asObservable()
-      //delay 3000 sec before engine check starts
-      .pipe(
-        delay(3000),
-        map(val => this.engineCheck(val, forceFailEngine)),
-        delay(3000),
-        map(val => this.fuelCheck(val, forceFailFuel)),
-        delay(3000),
-        map(val => this.finalCheck(val))
-      )
+
+    let _this = this
+
+
+    return new Promise<Array<ExecutionCode>>(function (resolve, reject) {
+      let val = new Array<ExecutionCode>();
+      //1
+      setTimeout(function () {
+        _this.engineCheck(val, forceFailEngine);
+        //2
+        setTimeout(function () {
+          _this.fuelCheck(val, forceFailFuel);
+          //3
+          setTimeout(function () {
+            try {
+              _this.finalCheck(val);
+              resolve(val);
+            } catch (error) {
+              reject(error);
+            }
+          }, _this.speedInSeconds * 1000);
+        }, _this.speedInSeconds * 1000);
+      }, _this.speedInSeconds * 1000);
+    })
   }
+
+
 
   // if the stopRequest happens before 3 seconds
   // there should be an error response saying that engine failed to check
@@ -83,14 +99,16 @@ export class AircraftCheckSimulatorMockService {
     return val;
   }
 
-  public stop(): Observable<string> {
+  public stop(): Promise<string> {
     this.stopRequested = true
-    return of('Stop Requested')
+    var _result  = new Promise<string>((resolve, reject) => {
+      this.stopRequested = true
+      resolve('Simulation stop requested')
+    })
+    return _result
   }
 
   private clear() {
     this.stopRequested = false
-    this.executionCodes = []
-    this.obsCodes = new BehaviorSubject(this.executionCodes)
   }
 }

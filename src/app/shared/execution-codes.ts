@@ -6,6 +6,17 @@ export interface ExecutionCode {
 }
 
 export class ExecutionCodes {
+    
+    /**
+     * Success
+     * All Checked
+     */
+     static S0000: ExecutionCode = {
+        code: 'S0000',
+        title: "Ready to start the simulation",
+        description: "Waiting for . No faults found. Aircraft is ready to take off.",
+        success: true
+    }
     /**
      * Success
      * All Checked
