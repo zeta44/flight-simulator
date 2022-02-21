@@ -30,15 +30,35 @@
     </nav>
   </header>
   <main>
-    <section id="principal" class="my-3">
+    <section id="settings">
+      <article class="row">
+        <div class="container-fluid">
+          <div class="col-md-4 border form-check">
+            <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
+              [checked]="forceEngineFailure" (change)="forceEngineFailureChange()" />
+            <label class="form-check-label" for="flexCheckDisabled"> Force Engine Failure </label>
+          </div>
+          <div class="form-check">
+            <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled"
+              [checked]="forceFuelFailure" (change)="forceFuelFailureChange()" />
+            <label class="form-check-label" for="flexCheckCheckedDisabled">
+              Force Fuel Failure
+            </label>
+          </div>
+
+        </div>
+      </article>
+
+    </section>
+    <section id="principal" class="container-fluid my-2">
       <article class="row d-flex justify-content-between">
-        <div class="col-md-4 border m-2">
+        <div class="col-md-6 border p-3">
           <h2>Simulation Steps</h2>
           <div class="s-code" [innerText]="message_status"></div>
         </div>
 
-        <div class="col-md-3 border m-2">
-          <div class="mb-3">
+        <div class="col-md-6">
+          <div class="border my-1 p-3">
             <h2>Simulation Code</h2>
             <div class="c-code">
               <p>
@@ -46,14 +66,14 @@
               </p>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-4 border m-2">
-          <h2>Code Description</h2>
-          <h4>{{message_title}}</h4>
-          <div>
-            <div class="d-code">
-              {{message_description}}
+          <div class="border p-3">
+            <h2>Code Description</h2>
+            <h4>{{message_title}}</h4>
+            <div>
+              <div class="d-code">
+                {{message_description}}
+              </div>
             </div>
           </div>
 
@@ -74,18 +94,12 @@
       <article class="row">
 
         <div class="col-md-12 center">
-          <button type="button" class="btn btn-success my-3 mx-3" (click)="start()" [disabled]="desableStartButton">Start</button>
+          <button type="button" class="btn btn-success my-3 mx-3" (click)="start()"
+            [disabled]="desableStartButton">Start</button>
           <button type="button" class="btn btn-danger" (click)="stop()" [disabled]="desableStopButton">Stop</button>
-          <!-- <toggle-button (changed)="checked=$event"></toggle-button> -->
         </div>
-
       </article>
-      <!-- <article class="row">
-        <div class="col-md-12">
-          <p>The simulation is {{checked ? 'Running' : 'OFF'}}.</p>
-        </div>
 
-      </article> -->
     </section>
   </footer>
 </section>

@@ -17,8 +17,8 @@ export class AircraftCheckSimulatorService {
 
   }
 
-  start(): Promise<Array<ExecutionCode>> {
-    return this.scriptService.start()
+  start(forceFailEngine: boolean = false, forceFailFuel: boolean = false): Promise<Array<ExecutionCode>> {
+    return this.scriptService.start(forceFailEngine, forceFailFuel)
   }
 
   stop(): Promise<string> {

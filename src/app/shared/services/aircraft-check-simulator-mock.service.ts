@@ -88,20 +88,33 @@ export class AircraftCheckSimulatorMockService {
 
   finalCheck(val: ExecutionCode[]) {
     console.log('Executing finalCheck')
-    if (!this.stopRequested) {
-      if (val.filter(e => e.success == false).length == 0)
-        val.push(ExecutionCodes.S0001)
+
+    let allSuccess = val.filter(e => e.success == false).length == 0
+
+    if (allSuccess) {
+      val.push(ExecutionCodes.S0001)
     }
     else {
+      val.push(ExecutionCodes.S0003)
+    }
+
+    if (this.stopRequested) {
       val.push(ExecutionCodes.S0002)
     }
+    else {
+      if (allSuccess) {
+        val.push(ExecutionCodes.S0004)
+      }
+    }
+    //val.push(ExecutionCodes.S0005)
+    
     this.clear();
     return val;
   }
 
   public stop(): Promise<string> {
     this.stopRequested = true
-    var _result  = new Promise<string>((resolve, reject) => {
+    var _result = new Promise<string>((resolve, reject) => {
       this.stopRequested = true
       resolve('Simulation stop requested')
     })

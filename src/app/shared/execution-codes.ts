@@ -14,7 +14,7 @@ export class ExecutionCodes {
      static S0000: ExecutionCode = {
         code: 'S0000',
         title: "Ready to start the simulation",
-        description: "Waiting for . No faults found. Aircraft is ready to take off.",
+        description: "Waiting for script execution.",
         success: true
     }
     /**
@@ -24,7 +24,7 @@ export class ExecutionCodes {
     static S0001: ExecutionCode = {
         code: 'S0001',
         title: "All Checked",
-        description: "All systems are operational. No faults found. Aircraft is ready to take off.",
+        description: "All systems are operational.",
         success: true
     }
 
@@ -39,6 +39,27 @@ export class ExecutionCodes {
         success: false
     }
 
+    static S0003: ExecutionCode = {
+        code: 'S0003',
+        title: "Simulation failure",
+        description: "At least one of the simulations failed..",
+        success: false
+    }
+
+    static S0004: ExecutionCode = {
+        code: 'S0004',
+        title: "Simulation Complete",
+        description: "The aircraft is ready to take off",
+        success: true
+    }
+
+    static S0005: ExecutionCode = {
+        code: 'S0005',
+        title: "End of simulation",
+        description: "The script executed until the end.",
+        success: true
+    }
+
     /***
      * Success
      * Engine Check: Success
@@ -46,7 +67,7 @@ export class ExecutionCodes {
     static E0001: ExecutionCode = {
         code: 'E0001',
         title: "Engine Check: Success",
-        description: "Egine operational, fuel check will not proceed.",
+        description: "Egine operational.",
         success: true
     }
     /***
@@ -56,8 +77,8 @@ export class ExecutionCodes {
     static E0002: ExecutionCode = {
         code: 'E0002',
         title: "Engine Check: Fail",
-        description: "Engine failure is a scary thing. You might be going someplace important and failure of the engine can ruin everything. The good thing is almost every time the engine is about to fail it will have some minor and major warning signs that it is not working correctly.",
-        success: true
+        description: "Please verify engine components.",
+        success: false
     }
 
     /***
@@ -78,7 +99,7 @@ export class ExecutionCodes {
         code: 'F0001',
         title: "Fuel Check: Fail",
         description: "The fuel level is below the minimum required.",
-        success: true
+        success: false
     }
 
 

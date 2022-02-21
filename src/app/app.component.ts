@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
   message_code!: string
   message_description!: string;
 
+  forceEngineFailure: boolean = false
+  forceFuelFailure: boolean = false
+
 
 
   finalExecutionCode: ExecutionCode = {
@@ -37,6 +40,7 @@ export class AppComponent implements OnInit {
 
   constructor(private serviceCheck: AircraftCheckSimulatorService) { }
   ngOnInit(): void {
+
     this.desableStartButton = false;
     this.desableStopButton = true;
     this.message_status = '';
@@ -53,7 +57,7 @@ export class AppComponent implements OnInit {
     this.desableStopButton = false;
     this.clear();
     this.message_status += 'Simulation Started... Checking the systems.';
-    this.serviceCheck.start()
+    this.serviceCheck.start(this.forceEngineFailure, this.forceFuelFailure)
       .then(val => {
         this.finalExecutionCode = val[val.length - 1]
         for (let i = 0; i < val.length; i++) {
@@ -95,6 +99,16 @@ export class AppComponent implements OnInit {
   finish() {
     this.desableStartButton = false;
     this.desableStopButton = true;
+  }
+
+  forceEngineFailureChange() {
+    this.forceEngineFailure = !this.forceEngineFailure
+    console.log(`Engine Failure Setings = ${this.forceEngineFailure}`)
+  }
+
+  forceFuelFailureChange() {
+    this.forceFuelFailure = !this.forceFuelFailure
+    console.log(`Fuel Failure Setings = ${this.forceFuelFailure}`)
   }
 }
 
