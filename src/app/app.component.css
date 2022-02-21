@@ -3,7 +3,7 @@
 }
 
 #principal {
-    height: 70vh;
+    height: 65vh;
     background-color: #fafafa;
     
 }
@@ -27,5 +27,24 @@
     box-shadow: 20px 2px 20px 0 rgba(50, 50, 50, 0.75);
 }
 
+h2 {
+    text-align: center;
+    
+}
 
+p {    
+    text-align: center;
+}
+
+.d-code {
+    text-align: justify;
+       
+}
+.c-code{
+    font-size: xx-large;
+}
+
+.s-code{
+    text-align: justify;
+}
 
