@@ -1,4 +1,4 @@
-<section class="base container-fluid">
+<section class="container-fluid base">
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light row">
       <div class="container-fluid">
@@ -16,12 +16,12 @@
                 Help
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">FAQ</a></li>
-                <li><a class="dropdown-item" href="#">Support</a></li>
+                <li><a class="dropdown-item" target="_blank" href="https://github.com/zeta44/flight-simulator#readme">FAQ</a></li>
+                <li><a class="dropdown-item" target="_blank" href="https://github.com/zeta44/flight-simulator#readme">Support</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Documentation</a></li>
+                <li><a class="dropdown-item" target="_blank" href="https://github.com/zeta44/flight-simulator#readme">Documentation</a></li>
               </ul>
             </li>
           </ul>
@@ -31,34 +31,35 @@
   </header>
   <main>
     <section id="settings">
-      <article class="row">
-        <div class="container-fluid">
-          <div class="col-md-4 border form-check">
-            <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
-              [checked]="forceEngineFailure" (change)="forceEngineFailureChange()" />
-            <label class="form-check-label" for="flexCheckDisabled"> Force Engine Failure </label>
+      <article class="row mb-3">
+
+        <div class="col-md-6 ">
+          <div class="border p-3">
+            <div>
+              <h2>
+                Configurations
+              </h2>
+            </div>
+
+            <div class="form-check">
+              <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
+                [checked]="forceEngineFailure" (change)="forceEngineFailureChange()" />
+              <label class="form-check-label" for="flexCheckDisabled"> Force Engine Failure </label>
+            </div>
+            <div class="form-check">
+              <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled"
+                [checked]="forceFuelFailure" (change)="forceFuelFailureChange()" />
+              <label class="form-check-label" for="flexCheckCheckedDisabled">
+                Force Fuel Failure
+              </label>
+            </div>
+
           </div>
-          <div class="form-check">
-            <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled"
-              [checked]="forceFuelFailure" (change)="forceFuelFailureChange()" />
-            <label class="form-check-label" for="flexCheckCheckedDisabled">
-              Force Fuel Failure
-            </label>
-          </div>
+
 
         </div>
-      </article>
-
-    </section>
-    <section id="principal" class="container-fluid my-2">
-      <article class="row d-flex justify-content-between">
-        <div class="col-md-6 border p-3">
-          <h2>Simulation Steps</h2>
-          <div class="s-code" [innerText]="message_status"></div>
-        </div>
-
         <div class="col-md-6">
-          <div class="border my-1 p-3">
+          <div class="border p-3">
             <h2>Simulation Code</h2>
             <div class="c-code">
               <p>
@@ -66,7 +67,21 @@
               </p>
             </div>
           </div>
+        </div>
+      </article>
 
+    </section>
+    <section id="principal">
+      <article class="row d-flex justify-content-between">
+        <div class="col-md-6">
+          <div class="border p-3">
+            <h2>Simulation Logs</h2>
+            <div class="s-code" [innerText]="message_status"></div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
           <div class="border p-3">
             <h2>Code Description</h2>
             <h4>{{message_title}}</h4>
@@ -76,30 +91,27 @@
               </div>
             </div>
           </div>
-
-        </div>
+       </div>
 
       </article>
 
     </section>
   </main>
-  <footer>
-    <section id="botton" class="row">
-      <article class="row">
-        <div class="col-md-12">
-          <h1>CONTROL PANEL</h1>
-        </div>
-
-      </article>
-      <article class="row">
-
-        <div class="col-md-12 center">
-          <button type="button" class="btn btn-success my-3 mx-3" (click)="start()"
-            [disabled]="desableStartButton">Start</button>
-          <button type="button" class="btn btn-danger" (click)="stop()" [disabled]="desableStopButton">Stop</button>
-        </div>
-      </article>
-
-    </section>
-  </footer>
 </section>
+<footer>
+  <section class="container-fluid" id="botton">
+    <article class="row">
+      <div class="col-md-12">
+        <h1>CONTROL PANEL</h1>
+      </div>
+
+    </article>
+    <article class="row">
+      <div class="col-md-12 center">
+        <button type="button" class="btn btn-success my-3 mx-3" (click)="start()"
+          [disabled]="desableStartButton">Start</button>
+        <button type="button" class="btn btn-danger" (click)="stop()" [disabled]="desableStopButton">Stop</button>
+      </div>
+    </article>
+  </section>
+</footer>
