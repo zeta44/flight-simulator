@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ToggleButtonComponent } from './toggle-button';
 import { FormsModule } from '@angular/forms';
 import { AircraftCheckSimulatorMockService } from './shared/services';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ToggleButtonComponent
+    AppComponent,    
   ],
   imports: [
     BrowserModule,
