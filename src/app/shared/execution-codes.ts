@@ -8,18 +8,7 @@ export interface ExecutionCode {
 export class ExecutionCodes {
     
     /**
-     * Success
-     * All Checked
-     */
-     static S0000: ExecutionCode = {
-        code: 'S0000',
-        title: "Ready to start the simulation",
-        description: "Waiting for script execution.",
-        success: true
-    }
-    /**
-     * Success
-     * All Checked
+     * All Checked: Success
      */
     static S0001: ExecutionCode = {
         code: 'S0001',
@@ -29,39 +18,33 @@ export class ExecutionCodes {
     }
 
     /**
-     * Failure
-     * Simulation Interrupted
+     * Simulation Interrupted: Failure
      */
     static S0002: ExecutionCode = {
         code: 'S0002',
-        title: "Simulation interrupted",
+        title: "Simulation Interrupted",
         description: "The user requested to stop the simulation.",
         success: false
     }
-
+    /**
+     * Simulation Failure: Failure
+     */
     static S0003: ExecutionCode = {
         code: 'S0003',
-        title: "Simulation failure",
-        description: "At least one of the simulations failed..",
+        title: "Simulation Failure",
+        description: "At least one of the simulations failed.",
         success: false
     }
-
+    /**
+     * Simulation Complete: Success
+     */
     static S0004: ExecutionCode = {
         code: 'S0004',
         title: "Simulation Complete",
-        description: "The aircraft is ready to take off",
+        description: "The aircraft is ready to take off.",
         success: true
     }
-
-    static S0005: ExecutionCode = {
-        code: 'S0005',
-        title: "End of simulation",
-        description: "The script executed until the end.",
-        success: true
-    }
-
-    /***
-     * Success
+    /**
      * Engine Check: Success
      */
     static E0001: ExecutionCode = {
@@ -70,19 +53,18 @@ export class ExecutionCodes {
         description: "Egine operational.",
         success: true
     }
-    /***
+    /**
      * Failure
      * Engine Check: Fail
      */
     static E0002: ExecutionCode = {
         code: 'E0002',
-        title: "Engine Check: Fail",
+        title: "Engine Check: Failure",
         description: "Please verify engine components.",
         success: false
     }
 
     /***
-     * Success
      * Fuel Check: Success
      */
     static F0001: ExecutionCode = {
@@ -92,15 +74,12 @@ export class ExecutionCodes {
         success: true
     }
     /***
-     * Failure
-     * Fuel Check: Fail
+     * Fuel Check: Failure
      */
     static F0002: ExecutionCode = {
         code: 'F0001',
-        title: "Fuel Check: Fail",
+        title: "Fuel Check: Failure",
         description: "The fuel level is below the minimum required.",
         success: false
     }
-
-
 }
