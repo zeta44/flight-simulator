@@ -38,7 +38,13 @@ This means the Simulation is finished without any interruptions or failures.
 
 [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
+## Requirements
+
+Install NodeJS - V.16+
+
 ## Running the App
+
+Run `npm install` to fetch dependencies.
 
 Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
