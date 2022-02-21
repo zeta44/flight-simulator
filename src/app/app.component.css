@@ -1,34 +1,8 @@
-.base {
-    background-color: #fafafa;
-}
-
-#principal {
-    height: 65vh;
-    background-color: #fafafa;
-    
-}
-
-#code {
-    width: 800px;
-}
-
-#textarea {
-	max-height: 60vh;
-}
-
-#botton {
-    text-align: center;
-    align-content: center;
-    height: 20vh;
-    align-items: center;
-    background-color: antiquewhite;
-    border-top-left-radius: 20%;
-    border-top-right-radius: 20%;
-    box-shadow: 20px 2px 20px 0 rgba(50, 50, 50, 0.75);
-}
-
 h2 {
     text-align: center;
+    background-color: rgb(73, 64, 55);
+    color: rgb(233, 237, 241);
+    padding: 3px;
     
 }
 
@@ -41,10 +15,31 @@ p {
        
 }
 .c-code{
-    font-size: xx-large;
+    min-height: 44px;
+    font-size: 25px;
+    font-weight: 500;
 }
 
 .s-code{
     text-align: justify;
+}
+
+#botton {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    /* width: 99.8%; */
+    text-align: center;
+    align-items: center;
+    background-color: rgb(226, 224, 220) !important;
+    /* border-top-left-radius: 20%;
+    border-top-right-radius: 20%; */
+}
+
+#botton h1 {
+    background-color: rgb(73, 64, 55);
+    color: rgb(233, 237, 241);
+    padding: 5px;
+    margin: 5px;
 }
 
